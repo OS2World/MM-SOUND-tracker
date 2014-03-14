@@ -1,0 +1,7 @@
+NAME		trackerpm WINDOWAPI
+DESCRIPTION	'Tracker- PM MOD player for OS/2 2.0'
+STACKSIZE		16384
+PROTMODE
+EXETYPE OS2
+EXPORTS		_ControlDlgProc
+

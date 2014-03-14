@@ -1,0 +1,8 @@
+LIBRARY lcd
+DESCRIPTION	'lcd - Digital font for Tracker/PM MOD player'
+
+HEAPSIZE 0
+STACKSIZE 0
+
+DATA SINGLE SHARED
+

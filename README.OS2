@@ -1,0 +1,144 @@
+Tracker/PM version 0.61 alpha
+
+This program requires SBOS2.SYS- a soundblaster/soundblaster pro driver for
+OS/2 2.0.  It does NOT work with MMPM/2 (yet).
+
+Installation:
+	all you need to run the program is the executable and the font
+(lcd.fon).  Just put them in the same directory and you're all set.
+
+Make sure the font file LCD.FON is in the same directory as TRACKER.EXE, or
+the program will look crappy!
+  
+You may want to associate tracker.exe with file of type *.mod.  To do this
+you must create a program object for tracker.exe.  Then open the settings
+menu and go to the association notebook setting and add *.mod as a new name.
+Then whenever you double-click on a file in the workplace shell with a
+file-name extension of MOD, it will call up tracker.exe and play the song.
+
+This MOD player has a long history, starting on Unix Machines and finally
+moving to OS/2.  It has been ported to work with Michael Fulbright's SBOS2.SYS,
+a soundblaster, soundblaster pro driver for OS/2 2.0.  In fact, he was the
+one who ported the code from Unix to OS/2.  (read the other readme files for
+more info on the original authors).
+
+Anyway I have rewritten the player to run under OS/2 2.0 PM.  The command-
+line options are as follows:
+
+tracker [-switches] [@cdfilename] [filename] [filename] ...
+
+     -i: Iconic; start as an icon (currently not implemented)
+     -m: Mono; select single audio channel output
+     -s: Stereo; select dual audio channel output
+     -n: New; select new MOD type for mod playing
+     -o: Old; select old MOD type for mod playing
+     -b: Both; select both MOD types to try (default is -both)
+     -T: Terminate; terminate after playing all mods
+     -L: Low priority; sets tracker to normal low priority (default)
+     -M: Middle priority; sets tracker to "foregroundserver" priority
+     -H: Highest priority; sets tracker to "timecritical" priority
+  -dnum: DMA buffer size; set DMA buffer size in K.
+  -fnum: Frequency; sets playback frequency to <num> Hz.
+  -tnum: Transpose all notes up <num> half-steps
+  -rnum: Repeat; repeats <num> number of repeats (0 is forever) (default 1)
+  -Bnum: Blend; sets percent of channel mixing to <num>. (0=spatial, 100=mono)
+  -Onum: Oversample; set oversampling to <num> times.
+  -Snum: Speed; set song speed to <speed>.  Some songs want 60 (default 50)
+
+Filenames which are preceded by an '@' sign are taken to be text files which
+contain a list of files to play.  For example you could put your favorite 
+mods in a list in a text file called "my.cd" and queue them all by typing
+"tracker @my.cd".  Actually you don't need the "@" sign if your cd file ends
+with the extension ".cd".  The ".MOD" extension is optional both on the
+command-line and in the cd files.  (the ".cd" extension is not optional, but
+if you want to specify a filename that does not end in ".cd" and contains the
+list of mod filenames to play, use the "@" prefix character).
+
+The most important options are the priority options -M and -H.  I have a
+soundblaster pro and I usually don't use any other option other than -M or
+-H.  It will autodetect an SBpro and set stereo mode+etc.
+
+You may want to set -T in a WPS program object in the command-line options
+so you can doubleclick on a mod file, have it play, and then terminate the
+mod player.
+
+The controls are kind-of like a CD player, you can create a "virtual CD" by
+queueing a bunch of songs either on the command-line or using the "queue"
+button.  Then you can use the forward and backward buttons to skip around
+between songs.
+
+Sometimes you have to wait for the current song to quit playing (just like a
+CD), because the program has to wait for the DMA buffers to be flushed.  If 
+you don't like the delay you can set the DMA buffers to a smaller value, but
+then it might not multitask as well (the music might get jumpy).
+
+Also keys:
+	 F1 - About Box (no equivalent button)
+	 F3 - Queue song
+	 F4 - Exit
+	 F5 - Play
+	 F6 - Pause
+	 F7 - Stop
+	 F8 - Restart current song (no equivalent button)
+	 F9 - Next song
+	F10 - Previous song
+
+This is a very early alpha-test version!  Please report all bugs to 
+David Nichols: you can contact me at the addresses at the bottom of the
+screen.
+
+
+New in 0.61 from 0.6
+	added icons on command buttons
+
+New in 0.6 from 0.5:
+	dropped obsolete buttons and waveform windows
+	enhanced font, added play, pause, stop, etc. graphics
+	made it look a bit more like an audio component
+
+New in 0.5 from 0.1:
+	ability to specify file list files (@cdfile, or filename.cd) on the
+		command-line
+	program remembers last drive and directory when loading MODs from
+		another disk
+	cleaned up some parts of MOD playing code
+	new windows/dialog boxes
+	added custom digital font
+
+stuff to look for in next release (to do):
+	cleaner code
+	proper refreshing
+	faster response to certain actions
+	true asynchronous operation (no hogging input queue)
+	cool artsyfartsy bitmap for about box (need help on that one)
+
+Known bugs: 
+	some windows do not refresh properly always
+	program terminates unexpectedly due to unknown bug.  This is very
+		rare (on my machine).  I think the GNU libc functions are
+		giving me problems in the multi-threading enviroment I have
+		implemented.  I have replaced many with OS/2 api calls,
+		most notably malloc with DosAllocMem, so the program uses a
+		LOT more memory than it needs right now (DosAllocMem
+		allocates a page at a time, 4096 bytes).
+	you can load multiple copies of the about box
+	time doesn't refresh correctly
+	time is inaccurate (may not fix this one- it's close enough for me)
+	can't queue .cd files from queue window
+	queue position indicator sometimes reports wrong number of files in
+		the queue
+
+If you have any problems, look in the current directory for a file called
+"debug" and report the contents to me.  Thanks.
+
+internet: davidn@cs.tamu.edu
+FidoNet: David Nichols 1:117/357 Net-One OS/2 BBS
+
+note: my BBS Net One OS/2 BBS will go down Dec 16, 1992 and go back up
+in mid Jan, 1993.
+
+The author of the SBOS2.SYS OS/2 sound driver and other sound utilities
+(Michael Fulbright) can be reached on the Internet as msf@as.arizona.edu
+
+enjoy!
+

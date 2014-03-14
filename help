@@ -1,0 +1,49 @@
+From tamsun.tamu.edu!cs.utexas.edu!sdd.hp.com!spool.mu.edu!uunet!stanford.edu!rock!taco!garfield.catt.ncsu.edu!harris Sun Nov  1 18:00:36 CST 1992
+Article: 6854 of comp.os.os2.programmer
+Newsgroups: comp.os.os2.programmer
+Path: tamsun.tamu.edu!cs.utexas.edu!sdd.hp.com!spool.mu.edu!uunet!stanford.edu!rock!taco!garfield.catt.ncsu.edu!harris
+From: harris@garfield.catt.ncsu.edu (Michael Harris)
+Subject: Re: can't access resource font
+Message-ID: <harris.720655949@garfield.catt.ncsu.edu>
+Sender: news@ncsu.edu (USENET News System)
+Organization: North Carolina State University
+References: <1992Oct31.184358.4532@tamsun.tamu.edu>
+Date: Sun, 1 Nov 1992 22:12:29 GMT
+Lines: 33
+
+davidn@cs.tamu.edu (David E Nichols) writes:
+
+>call= GpiLoadFonts(hab, "lcd.fnt")
+
+This is your problem.  The documentation says that you cannot specify anything
+but a .fon file for the name.  A .fnt file is nothing but a raw font.  A .fon
+file is an empty DLL with font resources attached.
+
+If you want to use GpiLoadFonts, you must compile a dummy entrypoint into
+a DLL and then use the resource compiler to attach the font to the DLL.
+
+Your DLL can consist of nothing but:
+
+main()
+{
+}
+
+Compile that into an .obj file and go from there.  You could then install
+the font into your system if you like using the font palette.
+
+
+
+
+
+
+
+
+
+
+______________________________________________________________________________
+     Michael Harris - harris@catt.ncsu.edu or harris@carvm3.vnet.ibm.com
+ System Administrator, Computer & Technologies Theme Program, NC State Univ.
+(My opinions are my own and do not represent those of NCSU or IBM Corporation)
+
+
+

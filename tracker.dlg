@@ -1,0 +1,84 @@
+DLGINCLUDE 1 "tracker.h"
+
+DLGTEMPLATE IDM_ABOUT LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "About Tracker/PM", IDM_ABOUT, 9, 28, 237, 142, WS_VISIBLE | NOT 
+            WS_CLIPSIBLINGS | NOT WS_SAVEBITS, FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        CTEXT           "Tracker for OS/2 2.0 PM", -1, 7, 125, 221, 14
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00FF0000L
+                        PRESPARAMS PP_FONTNAMESIZE, 0x482E3631L, 0x00766C65L
+        CTEXT           "Tracker for PM - by David Nichols", -1, 11, 117, 
+                        212, 8
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+                        PRESPARAMS PP_FONTNAMESIZE, 0x482E3031L, 0x00766C65L
+        DEFPUSHBUTTON   "OK", ID_TRACKER, 100, 3, 32, 14, WS_GROUP
+        CTEXT           "Version 0.5 alpha", 88, 8, 107, 219, 8, DT_VCENTER
+        GROUPBOX        "About Tracker/PM", 89, 4, 61, 228, 43
+        LTEXT           "Original authors: Liam Corner, Marc Espie, Steve Ha"
+                        "enichen, Michael Fulbright.  From Unix to OS/2, thi"
+                        "s version of SparcTracker was ported to OS/2 2.0 PM"
+                        " by David Nichols.", 5, 7, 63, 216, 32, 
+                        DT_WORDBREAK
+                        PRESPARAMS PP_FONTNAMESIZE, 0x482E3031L, 0x00766C65L
+        GROUPBOX        "Keys", 6, 3, 22, 229, 37
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000080L
+        LTEXT           "F1: About", 7, 23, 41, 61, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        LTEXT           "F5: Play", 8, 91, 41, 59, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        LTEXT           "F8: Restart", 9, 159, 41, 64, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        LTEXT           "F3: Queue", 18, 23, 32, 62, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        LTEXT           "F6: Pause", 19, 91, 32, 62, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        LTEXT           "F9: Next", 20, 159, 32, 66, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        LTEXT           "F4: Exit", 21, 23, 23, 63, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        LTEXT           "F7: Stop", 22, 91, 23, 66, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        LTEXT           "F10: Previous", 23, 159, 23, 66, 9
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+    END
+END
+
+DLGTEMPLATE IDM_CONTROL LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Tracker/PM", IDM_CONTROL, 12, 7, 244, 86, NOT FS_DLGBORDER | 
+            FS_BORDER | WS_VISIBLE, FCF_SYSMENU | FCF_TITLEBAR | 
+            FCF_MINBUTTON
+    BEGIN
+        CONTROL         "", 104, 4, 18, 231, 18, WC_STATIC, SS_FGNDFRAME | 
+                        WS_GROUP | WS_VISIBLE
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00808080L
+        PUSHBUTTON      "|<<", IDM_PREV, 146, 20, 40, 14
+                        PRESPARAMS PP_FONTNAMESIZE, 0x432E3031L, 0x6972756FL, 
+                        0x00007265L
+        PUSHBUTTON      ">", IDM_PLAY, 54, 20, 40, 14
+                        PRESPARAMS PP_FONTNAMESIZE, 0x432E3031L, 0x6972756FL, 
+                        0x00007265L
+        PUSHBUTTON      ">>|", IDM_NEXT, 192, 20, 40, 14
+                        PRESPARAMS PP_FONTNAMESIZE, 0x432E3031L, 0x6972756FL, 
+                        0x00007265L
+        PUSHBUTTON      "stop", IDM_STOP, 100, 20, 40, 14
+        PUSHBUTTON      "||", IDM_PAUSE, 9, 20, 40, 14
+        GROUPBOX        "Song", 110, 4, 60, 113, 26
+        PUSHBUTTON      "queue..", IDM_OPEN, 73, 2, 40, 14
+        PUSHBUTTON      "exit", IDM_EXIT, 125, 2, 40, 14
+        CONTROL         "", ID_NAMERECT, 8, 63, 104, 14, WC_STATIC, 
+                        SS_FGNDRECT | WS_GROUP | WS_VISIBLE
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        CONTROL         "", ID_TIMERECT, 4, 39, 157, 19, WC_STATIC, 
+                        SS_FGNDRECT | WS_GROUP | WS_VISIBLE
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        GROUPBOX        "File", 106, 121, 60, 116, 26
+        CONTROL         "", ID_QUEUERECT, 161, 39, 76, 19, WC_STATIC, 
+                        SS_FGNDRECT | WS_GROUP | WS_VISIBLE
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        CONTROL         "", ID_SONGRECT, 125, 63, 108, 14, WC_STATIC, 
+                        SS_FGNDRECT | WS_GROUP | WS_VISIBLE
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+    END
+END
